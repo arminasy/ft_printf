@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_numlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arminasy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/24 15:38:58 by arminasy          #+#    #+#             */
-/*   Updated: 2021/05/18 15:33:52 by arminasy         ###   ########.fr       */
+/*   Created: 2021/05/17 19:28:06 by arminasy          #+#    #+#             */
+/*   Updated: 2021/05/17 19:42:39 by arminasy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "limits.h"
 
-int	ft_isalpha(int c)
+int	ft_numlen_base(unsigned long n, int base)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
+	int		i;
+
+	i = 0;
+	if (n == 0)
+	{
+		i += 1;
+		return (i);
+	}
+	while (n > 0)
+	{
+		i++;
+		n /= base;
+	}
+	return (i);
 }

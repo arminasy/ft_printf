@@ -1,25 +1,53 @@
-SRCS		= $(shell find "." -name "*.c" ! -name "ft_lst*.c")
-OBJS		= ${SRCS:.c=.o}
-NAME		= libft.a
-CC			= gcc
-RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror
-AR			= ar csr
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: arminasy <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/05/17 17:36:07 by arminasy          #+#    #+#              #
+#    Updated: 2021/05/17 19:34:14 by arminasy         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-.c.o :
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+INCLUDES = ./
 
-$(NAME) : ${OBJS}
-	${AR} libft.a ${OBJS}
+SRC	=	ft_strlen.c				\
+		ft_atoi.c				\
+		ft_uitoa.c				\
+		ft_isalpha.c			\
+		ft_isdigit.c			\
+		ft_itoa.c				\
+		ft_itoa_base.c				\
+		ft_numlen.c				\
+		ft_numlen_base.c				\
+		ft_putnbr_base.c				\
+		ft_putchar.c			\
 
-all : ${NAME}
+OBJS = $(SRC:%.c=%.o)
 
-clean :
-	${RM} ${OBJS} 
+NAME = libft.a
 
-fclean : clean
-	${RM} ${NAME}
+CC = gcc
 
-re : fclean all
+RM = rm -f
 
-.PHONY: all clean fclean re .c.o
+CFLAGS = -Wall -Wextra -Werror
+
+$(NAME):
+	$(CC) $(CFLAGS) $(SRC) -c -I$(INCLUDES)
+	ar -rc $(NAME) $(OBJS)
+	ranlib $(NAME)
+
+
+all: $(NAME)
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+		$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean re all

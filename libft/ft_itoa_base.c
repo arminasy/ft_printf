@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arminasy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/24 15:38:58 by arminasy          #+#    #+#             */
-/*   Updated: 2021/05/18 15:33:52 by arminasy         ###   ########.fr       */
+/*   Created: 2021/05/17 19:27:49 by arminasy          #+#    #+#             */
+/*   Updated: 2021/05/17 19:42:18 by arminasy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+char	*ft_itoa_base(char *str, unsigned long n, int base, int c)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
+	int		i;
+
+	i = 0;
+	if (n == 0)
+		str[i++] = '0';
+	while (n > 0)
+	{
+		if (base > 10 && (n % base >= 10))
+			str[i++] = (n % base) - 10 + c;
+		else
+			str[i++] = (n % base) + '0';
+		n /= base;
+	}
+	str[i] = '\0';
+	return (str);
 }

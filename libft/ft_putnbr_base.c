@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arminasy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/24 15:38:58 by arminasy          #+#    #+#             */
-/*   Updated: 2021/05/18 15:33:52 by arminasy         ###   ########.fr       */
+/*   Created: 2021/05/17 19:28:27 by arminasy          #+#    #+#             */
+/*   Updated: 2021/05/17 19:43:14 by arminasy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+int	ft_putnbr_base(unsigned long n, char *base)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
+	unsigned long	base_len;
+	unsigned long	num;
+	int				l;
+
+	l = 1;
+	num = n;
+	base_len = ft_strlen(base);
+	if (num == 0)
+	{
+		ft_putchar('0');
+		return (l);
+	}
+	if (num >= base_len)
+	{
+		l += ft_putnbr_base(num / base_len, base);
+		ft_putchar(base[num % base_len]);
+	}
+	else if (num < base_len)
+		ft_putchar(base[num]);
+	return (l);
 }

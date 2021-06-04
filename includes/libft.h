@@ -26,7 +26,7 @@ int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_numlen(long n);
 int		ft_numlen_base(unsigned long n, int base);
-void	ft_putchar(char c);
+int		ft_putchar(char c);
 int		ft_putnbr_base(unsigned long n, char *base);
 char	*ft_itoa_base(char *str, unsigned long n, int base, int c);
 char	*ft_itoa(int n);
